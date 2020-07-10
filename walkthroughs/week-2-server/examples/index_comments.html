@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comment Log</title>
+  </head>
+  <body>
+    <h1>Comments</h1>
+
+    <form action="/text" method="POST">
+
+      <p>Enter a comma-separated list of comments:</p>
+      <textarea name="text-input">one, two, three</textarea>
+      <br/><br/>
+
+      
+      <input type="submit" />
+      <p>Click here to see old log</p>
+      <button onclick="loadConvo()">Fetch-Conversations</button>
+      <ul id="Fetch-Conversations-container"></ul>
+    </form>
+  </body>
+</html>
+
