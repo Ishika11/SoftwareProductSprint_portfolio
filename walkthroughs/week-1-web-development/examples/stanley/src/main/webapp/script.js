@@ -30,3 +30,6 @@ function randomizeImage() {
   imageContainer.innerHTML = '';
   imageContainer.appendChild(imgElement);
 }
+
+
+
