@@ -28,6 +28,7 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
     
     convo = new ArrayList<>();
     convo.add("Really loved the Book");
