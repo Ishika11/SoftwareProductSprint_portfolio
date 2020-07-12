@@ -7,3 +7,18 @@
 #quote-container {
   margin-top: 20px;
 }
+
+h1{
+  font-size: 50px;
+  font-family: fantasy;
+  color: slateblue;
+}
+p{
+  font-size: 20;
+  font-family: 'Times New Roman', Times, serif;
+  color: hotpink;
+}
+body {
+  background-color: rgb(231, 231, 171);
+}
+

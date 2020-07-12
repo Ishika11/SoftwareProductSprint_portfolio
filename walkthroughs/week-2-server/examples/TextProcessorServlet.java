@@ -15,29 +15,44 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
-import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+/** Servlet that processes text. */
+@WebServlet("/text")
+public final class TextProcessorServlet extends HttpServlet {
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+    String[] words = text.split("\\s*,\\s*");
+
+    // Sort the words.
+    response.setContentType("text/html;");
+    response.getWriter().println(Arrays.toString(words));
+  }
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    
-    convo = new ArrayList<>();
-    convo.add("Really loved the Book");
-    convo.add("My favourite Character is Hermoine");
-    convo.add("I'd rather sleep");
-    convo.add("Do you guys know about Kurzgesagt?");
     Gson gson = new Gson();
-    String json = gson.toJson(convo);
-    response.setContentType("convo/json;");
+    String json = gson.toJson(words);
+    response.setContentType("words/json;");
     response.getWriter().println(json);
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }

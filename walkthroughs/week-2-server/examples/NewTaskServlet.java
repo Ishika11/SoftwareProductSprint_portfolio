@@ -14,30 +14,31 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
-import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
-  
+/** Servlet responsible for creating new tasks. */
+@WebServlet("/new-task")
+public class NewTaskServlet extends HttpServlet {
+
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String title = request.getParameter("title");
+    long timestamp = System.currentTimeMillis();
 
-    
-    convo = new ArrayList<>();
-    convo.add("Really loved the Book");
-    convo.add("My favourite Character is Hermoine");
-    convo.add("I'd rather sleep");
-    convo.add("Do you guys know about Kurzgesagt?");
-    Gson gson = new Gson();
-    String json = gson.toJson(convo);
-    response.setContentType("convo/json;");
-    response.getWriter().println(json);
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("title", title);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    response.sendRedirect("/index.html");
   }
 }

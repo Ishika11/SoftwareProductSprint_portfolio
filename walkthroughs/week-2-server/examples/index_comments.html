@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Comment Log</title>
+  </head>
+  <body onload="loadTasks()">
+    <h1>Comments</h1>
+
+    <form method="POST" action="/new-task">
+      <input type="text" name="title" />
+      <br/>
+      <button>Submit</button>
+    </form>
+    <hr/>
+    <ul id="task-list"></ul>
+  </body>
+</html>
+
