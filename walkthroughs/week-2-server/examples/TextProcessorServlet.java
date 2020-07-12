@@ -35,6 +35,8 @@ public final class TextProcessorServlet extends HttpServlet {
     response.setContentType("text/html;");
     response.getWriter().println(Arrays.toString(words));
   }
+  
+  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Gson gson = new Gson();
     String json = gson.toJson(words);
