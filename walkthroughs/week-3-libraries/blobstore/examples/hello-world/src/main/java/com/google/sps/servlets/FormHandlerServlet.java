@@ -50,7 +50,12 @@ public class FormHandlerServlet extends HttpServlet {
 
     // Output some HTML that shows the data the user entered.
     // A real codebase would probably store these in Datastore.
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    String BlobstoreUploadUrl= blobstoreService.createUploadUrl("/return-url");
+    
     PrintWriter out = response.getWriter();
+    out.println("<p>Here's the  blob url :</p>");
+    out.println("<a href=\"" + BlobstoreUploadUrl + "\">");
     out.println("<p>Here's the image you uploaded:</p>");
     out.println("<a href=\"" + imageUrl + "\">");
     out.println("<img src=\"" + imageUrl + "\" />");
@@ -64,7 +69,8 @@ public class FormHandlerServlet extends HttpServlet {
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
     Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
     List<BlobKey> blobKeys = blobs.get("image");
-
+   
+    
     // User submitted form without selecting a file, so we can't get a URL. (dev server)
     if (blobKeys == null || blobKeys.isEmpty()) {
       return null;
