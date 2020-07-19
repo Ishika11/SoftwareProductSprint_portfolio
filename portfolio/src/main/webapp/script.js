@@ -15,7 +15,25 @@
 /**
  * Adds a random greeting to the page.
  */
+async function initializeComments() {
+  await loadComments();
+  const response = await fetch('/auth-status');
+  const authData = await response.json();
 
+  if (!authData.isLoggedIn) {
+    const commentCreateForm = document.getElementById('comment-form');
+    commentCreateForm.hidden = true;
+    const logoutContainer = document.getElementById('logout-container');
+    logoutContainer.hidden = true;
+    const loginUrl = document.getElementById('login-url');
+    loginUrl.href = authData.authURL;
+  } else {
+    const loginContainer = document.getElementById('login-container');
+    loginContainer.hidden = true;
+    const logoutUrl = document.getElementById('logout-url');
+    logoutUrl.href = authData.authURL;
+  }
+}
 function loadComments() {
   fetch('/list-tasks').then(response => response.json()).then((tasks) => {
     const taskListElement = document.getElementById('task-list');
