@@ -25,7 +25,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+
 import com.google.sps.data.Comment;
+
+
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -89,7 +92,6 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("timestamp", timestamp);
 
     datastore.put(commentEntity);
-
     response.sendRedirect("/index.html");
   }
 }
