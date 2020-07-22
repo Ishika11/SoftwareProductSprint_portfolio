@@ -26,7 +26,10 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
+
 import com.google.sps.data.Comment;
+
+
 
 
 
@@ -37,6 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comments")
