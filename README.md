@@ -1,4 +1,3 @@
 # Google Software Product Sprint
 
-This repo contains Ishika's portfolio and
-SPS projects.
+This repo contains Arjan's portfolio and SPS projects.
